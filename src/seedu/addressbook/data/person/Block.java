@@ -9,8 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Block {
 
     public static final String EXAMPLE = "123";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Block numbers have to be composed of digits";
-    public static final String ADDRESS_VALIDATION_REGEX = "^[0-9]+$";
+    public static final String MESSAGE_BLOCK_CONSTRAINTS = "Block numbers have to be composed of digits";
+    public static final String BLOCK_VALIDATION_REGEX = "^[0-9]+$";
 
     public final String value;
     private boolean isPrivate;
@@ -22,8 +22,8 @@ public class Block {
      */
     public Block(String block, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(block)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        if (!isValid(block)) {
+            throw new IllegalValueException(MESSAGE_BLOCK_CONSTRAINTS);
         }
         this.value = block;
     }
@@ -31,8 +31,8 @@ public class Block {
     /**
      * Returns true if a given string is a valid block number.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValid(String test) {
+        return test.matches(BLOCK_VALIDATION_REGEX);
     }
 
     @Override

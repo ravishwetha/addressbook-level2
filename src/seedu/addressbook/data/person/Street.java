@@ -9,8 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Street {
 
     public static final String EXAMPLE = "Clementi Ave 3";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Street names can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_STREET_CONSTRAINTS = "Street names can be in any format";
+    public static final String STREET_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
@@ -22,8 +22,8 @@ public class Street {
      */
     public Street(String street, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(street)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        if (!isValid(street)) {
+            throw new IllegalValueException(MESSAGE_STREET_CONSTRAINTS);
         }
         this.value = street;
     }
@@ -31,8 +31,8 @@ public class Street {
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValid(String test) {
+        return test.matches(STREET_VALIDATION_REGEX);
     }
 
     @Override

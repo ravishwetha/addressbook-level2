@@ -9,8 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class PostalCode {
 
     public static final String EXAMPLE = "231534";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Postal codes have to be composed of numerical digits";
-    public static final String ADDRESS_VALIDATION_REGEX = "^[0-9]+$";
+    public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "Postal codes have to be composed of numerical digits";
+    public static final String POSTALCODE_VALIDATION_REGEX = "^[0-9]+$";
 
     public final String value;
     private boolean isPrivate;
@@ -22,8 +22,8 @@ public class PostalCode {
      */
     public PostalCode(String postalCode, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(postalCode)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        if (!isValid(postalCode)) {
+            throw new IllegalValueException(MESSAGE_POSTALCODE_CONSTRAINTS);
         }
         this.value = postalCode;
     }
@@ -31,8 +31,8 @@ public class PostalCode {
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValid(String test) {
+        return test.matches(POSTALCODE_VALIDATION_REGEX);
     }
 
     @Override

@@ -9,8 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Unit {
 
     public static final String EXAMPLE = "#12-34";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Unit numbers must be in #xx-xx+ format, where x is a numerical digit and xx+ is any number of digits";
-    public static final String ADDRESS_VALIDATION_REGEX = "#[0-9][0-9]-[0-9]+";
+    public static final String MESSAGE_UNIT_CONSTRAINTS = "Unit numbers must be in #xx-xx+ format, where x is a numerical digit and xx+ is any number of digits";
+    public static final String UNIT_VALIDATION_REGEX = "#[0-9][0-9]-[0-9]+";
 
     public final String value;
     private boolean isPrivate;
@@ -22,8 +22,8 @@ public class Unit {
      */
     public Unit(String unit, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(unit)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        if (!isValid(unit)) {
+            throw new IllegalValueException(MESSAGE_UNIT_CONSTRAINTS);
         }
         this.value = unit;
     }
@@ -31,8 +31,8 @@ public class Unit {
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValid(String test) {
+        return test.matches(UNIT_VALIDATION_REGEX);
     }
 
     @Override
