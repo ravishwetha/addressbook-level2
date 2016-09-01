@@ -6,45 +6,33 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class PostalCode {
 
-    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses follow a certain format.";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "231534";
+    public static final String MESSAGE_POSTALCODE_CONSTRAINTS = "Postal codes have to be composed of numerical digits";
+    public static final String POSTALCODE_VALIDATION_REGEX = "^[0-9]+$";
 
     public final String value;
     private boolean isPrivate;
-    
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
 
     /**
      * Validates given address.
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Address(String address, boolean isPrivate) throws IllegalValueException {
+    public PostalCode(String postalCode, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        
-        String[] splitAddress = address.split(", ");
-        if (!isValidAddress(address)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        if (!isValid(postalCode)) {
+            throw new IllegalValueException(MESSAGE_POSTALCODE_CONSTRAINTS);
         }
-        this.block = new Block(splitAddress[0], isPrivate);
-        this.street = new Street(splitAddress[1], isPrivate);
-        this.unit = new Unit(splitAddress[2], isPrivate);
-        this.postalCode = new PostalCode(splitAddress[3], isPrivate);
-        
-        this.value = address;
+        this.value = postalCode;
     }
 
     /**
      * Returns true if a given string is a valid person email.
      */
-    public static boolean isValidAddress(String test) {
-    	return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValid(String test) {
+        return test.matches(POSTALCODE_VALIDATION_REGEX);
     }
 
     @Override
