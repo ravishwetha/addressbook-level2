@@ -8,17 +8,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses follow a certain format.";
+    public static final String EXAMPLE = "123, some street";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
-    
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -27,16 +22,9 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        
-        String[] splitAddress = address.split(", ");
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.block = new Block(splitAddress[0], isPrivate);
-        this.street = new Street(splitAddress[1], isPrivate);
-        this.unit = new Unit(splitAddress[2], isPrivate);
-        this.postalCode = new PostalCode(splitAddress[3], isPrivate);
-        
         this.value = address;
     }
 
@@ -44,7 +32,7 @@ public class Address {
      * Returns true if a given string is a valid person email.
      */
     public static boolean isValidAddress(String test) {
-    	return test.matches(ADDRESS_VALIDATION_REGEX);
+        return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
     @Override
@@ -55,7 +43,7 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instance of handles nulls
+                || (other instanceof Address // instanceof handles nulls
                 && this.value.equals(((Address) other).value)); // state check
     }
 
