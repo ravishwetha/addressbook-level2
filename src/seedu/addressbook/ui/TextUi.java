@@ -5,6 +5,7 @@ import static seedu.addressbook.common.Messages.*;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.tag.Taggings;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -100,6 +101,11 @@ public class TextUi {
                 storageFileInfo,
                 DIVIDER);
     }
+    
+    /** Shows user all tags for the session before exiting */
+    public void showTaggingsToUser() {
+    	showToUser(Taggings.allTagsString());
+    }
 
     public void showGoodbyeMessage() {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
@@ -165,5 +171,4 @@ public class TextUi {
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
-
 }
