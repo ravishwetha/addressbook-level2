@@ -52,7 +52,7 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
+                || (other instanceof Name // instance of handles nulls
                 && this.fullName.equals(((Name) other).fullName)); // state check
     }
 
